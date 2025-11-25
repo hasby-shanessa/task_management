@@ -1,60 +1,55 @@
 package Models;
 
-public class Project {
-    private static int IdCounter = 1;
-    private String projectId;
-    private String projectName;
-    private String projectDescription;
-    public enum projectType{
-        SOFTWARE,
-        HARDWARE
-    }
-    private projectType projectType;
-    private int teamSize;
-    private double budget;
-    private String status;
+import Interfaces.Completable;
 
-    public Project(String projectName, String projectDescription, projectType projectType, int teamSize, double budget){
-        this.projectId = String.format("P%03d", IdCounter++);
+public abstract class Project implements Completable {
+    protected String projectId;
+    protected String projectName;
+    protected String projectDescription;
+    protected String projectType;
+    protected Task[] tasks;
+    protected int taskCount;
+
+    public Project(String projectId, String projectName, String projectDescription, String projectType){
+        this.projectId = projectId;
         this.projectName = projectName;
         this.projectDescription = projectDescription;
         this.projectType = projectType;
-        this.teamSize = teamSize;
-        this.budget = budget;
-        this.status = "Created";
+        this.tasks = new Task [taskCount];
+        this.taskCount = 0;
     }
 
-    // Getters to help return values of our strings
-
-    public String getProjectId(){
+    public String getProjectId() {
         return projectId;
     }
-    public String getProjectName(){
+
+    public String getProjectName() {
         return projectName;
     }
-    public String getProjectDescription(){
+
+    public String getProjectDescription() {
         return projectDescription;
     }
-    public projectType getProjectType(){
+
+    public String getProjectType() {
         return projectType;
     }
-    public int getTeamSize(){
-        return teamSize;
-    }
-    public double getBudget(){
-        return budget;
-    }
-    public String status(){
-        return status;
+
+    public Task[] getTasks() {
+        return tasks;
     }
 
-    // status setter to help update our project's status
-
-    public void setStatus(String status){
-        this.status = status;
+    public int getTaskCount() {
+        return taskCount;
     }
 
-//    public static void addProject(Models.Project project){}
+    public void setProjectName(String projectName) {
+        this.projectName = projectName;
+    }
 
-//    public Models.Project()
+    public void setProjectDescription(String projectDescription) {
+        this.projectDescription = projectDescription;
+    }
+
+
 }
