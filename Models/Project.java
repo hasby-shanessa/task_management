@@ -1,4 +1,4 @@
-import java.lang.reflect.Array;
+package Models;
 
 public class Project {
     private static int IdCounter = 1;
@@ -54,6 +54,7 @@ public class Project {
         this.status = status;
     }
 
+//    public static void addProject(Models.Project project){}
 
-//    public Project()
+//    public Models.Project()
 }

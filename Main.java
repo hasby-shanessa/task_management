@@ -4,7 +4,7 @@ public class Main {
     public static void main(String[] args){
         System.out.println("============================================================");
         System.out.println("||           Welcome Our Task Management System            ||");
-        System.out.println("============================================================\n");
+        System.out.println("===========================================================\n");
 
         //Display options
 
@@ -36,7 +36,7 @@ public class Main {
                     while(projectRunning){
                         System.out.println("Filter Options");
                         System.out.println("************************************");
-                        System.out.println("1. Add New Project");
+                        System.out.println("1. Add New Models.Project");
                         System.out.println("2. View All Projects");
                         System.out.println("3. Software Projects Only");
                         System.out.println("4. Hardware Projects Only");
@@ -50,7 +50,24 @@ public class Main {
 
                         switch (projectChoice){
                             case 1:
-                                System.out.println("Add New Project");
+                                System.out.println("Add New Models.Project");
+                                Scanner add_project_name = new Scanner(System.in);
+                                System.out.print("Enter your project Name: ");
+                                String projectName = add_project_name.nextLine();
+                                Scanner add_project_description = new Scanner(System.in);
+                                System.out.print("Add your project description: ");
+                                String projectDescription = add_project_description.nextLine();
+                                Scanner add_project_type = new Scanner(System.in);
+                                System.out.print("Enter your project type: ");
+                                String projectType = add_project_type.nextLine().toUpperCase();
+                                Scanner add_teamSize = new Scanner (System.in);
+                                System.out.print("Enter your team size: ");
+                                int teamSize = add_teamSize.nextInt();
+                                Scanner add_project_budget = new Scanner(System.in);
+                                System.out.print("Enter the budget of your project: ");
+                                double projectBudget = add_project_budget.nextDouble();
+
+//                                Models.Project newProject = new Models.Project(projectName, projectDescription, projectType, teamSize, projectBudget);
                                 break;
 
                             case 2:
