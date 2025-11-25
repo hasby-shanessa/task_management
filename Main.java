@@ -29,6 +29,58 @@ public class Main {
             switch(choice){
                 case 1:
                     System.out.println("Manage Projects");
+                    Scanner project_input = new Scanner(System.in);
+                    int projectChoice;
+                    boolean projectRunning = true;
+
+                    while(projectRunning){
+                        System.out.println("Filter Options");
+                        System.out.println("************************************");
+                        System.out.println("1. Add New Project");
+                        System.out.println("2. View All Projects");
+                        System.out.println("3. Software Projects Only");
+                        System.out.println("4. Hardware Projects Only");
+                        System.out.println("5. Search By Budget Range");
+                        System.out.println("6. Return to Main Menu");
+                        System.out.println("7. Exit");
+                        System.out.println("************************************\n");
+                        System.out.print("Enter your choice (1 - 6): ");
+
+                        projectChoice = project_input.nextInt();
+
+                        switch (projectChoice){
+                            case 1:
+                                System.out.println("Add New Project");
+                                break;
+
+                            case 2:
+                                System.out.println("User wants to view their projects");
+                                break;
+
+                            case 3:
+                                System.out.println("User wants to view software projects only");
+                                break;
+
+                            case 4:
+                                System.out.println("User wants to view hardware projects only");
+                                break;
+
+                            case 5:
+                                System.out.println("User wants to search project by budget range");
+                                break;
+
+                            case 6:
+                                System.out.println("Return to Main Menu");
+
+                            case 7:
+                                System.out.println("Exiting...");
+                                projectRunning = false;
+                                break;
+
+                            default:
+                                System.out.print ("Please enter a valid choice (1 - 6) : ");
+                        }
+                    }
                     break;
 
                 case 2:
