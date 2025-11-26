@@ -185,6 +185,7 @@ public abstract class Project implements Completable {
     public abstract void displayProjectDetails();
     public abstract String getProjectSummary();
 
+    //DISPLAY METHOD
     public void displayTasks(){
         System.out.println("\nAssociated Tasks: ");
         System.out.println("----------------------------------------------------");
@@ -203,8 +204,16 @@ public abstract class Project implements Completable {
         System.out.printf("Completion Rate: %.0f%%%n", getCompletionPercentage());
     }
 
+    //RESET ID COUNTER
+    public static void resetIdCounter(){
+        nextId = 1;
+    }
+    public static int getCurrentIdCounter(){
+        return nextId;
+    }
+
     @Override
     public String toString() {
-        return projectType + " Project{" + "ID='" + projectId + '\'' + ", Name='" + projectName + '\'' + ", Tasks=" + taskCount + ", Complete=" + String.format("%.1f%%", getCompletionPercentage()) + '}';
+        return projectId + " | " + projectName + " | " + projectType + " | Team: " + teamSize + " | " + budget;
     }
 }
