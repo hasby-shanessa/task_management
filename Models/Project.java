@@ -3,19 +3,25 @@ package Models;
 import Interfaces.Completable;
 
 public abstract class Project implements Completable {
+    private static int nextId = 1;
     protected String projectId;
     protected String projectName;
     protected String projectDescription;
     protected String projectType;
+    protected int teamSize;
+    protected String budget;
     protected Task[] tasks;
     protected int taskCount;
 
-    public Project(String projectId, String projectName, String projectDescription, String projectType){
-        this.projectId = projectId;
+    protected static final int MAX_TASKS = 100;
+
+    public Project( String projectName, String projectDescription, int teamSize, String budget){
+        this.projectId = "P" + String.format("%03d", nextId);
         this.projectName = projectName;
         this.projectDescription = projectDescription;
-        this.projectType = projectType;
-        this.tasks = new Task [taskCount];
+        this.teamSize = teamSize;
+        this.projectType = "Unknow"; //(will be set by child class(software/hardware)
+        this.tasks = new Task [MAX_TASKS];
         this.taskCount = 0;
     }
 
@@ -35,6 +41,14 @@ public abstract class Project implements Completable {
         return projectType;
     }
 
+    public int getTeamSize() {
+        return teamSize;
+    }
+
+    public String getBudget() {
+        return budget;
+    }
+
     public Task[] getTasks() {
         return tasks;
     }
@@ -51,26 +65,59 @@ public abstract class Project implements Completable {
         this.projectDescription = projectDescription;
     }
 
-        // ADDING A TASK TO THE PROJECT
-    public void addTask(Task task){
-        if(taskCount<tasks.length){
-            tasks[taskCount]=task;
-            task.setProjectId(this.projectId);
-            taskCount++;
-            System.out.println("Task added successfully");
-        } else {
-            System.out.println("Unable to add task");
+    public void setTeamSize(int teamSize){
+        if(teamSize > 0){
+            this.teamSize = teamSize;
         }
     }
 
+    public void setBudget(String budget) {
+        this.budget = budget;
+    }
+
+        // ADDING A TASK TO THE PROJECT
+    public boolean addTask(Task task){
+        if(taskCount >= MAX_TASKS){
+            System.out.println("Error: Project is full(max " + MAX_TASKS + " tasks)");
+            return false;
+        }
+        tasks[taskCount] = task;
+        task.setProjectId(this.projectId);
+        taskCount++;
+
+        System.out.println("Task \"" + task.getTaskName()+ "\" added successfully to Project " + projectId + "!");
+        return true;
+    }
+
     //GETTING TASK BY ID
-    public Task findTaskById(){
-        for(int i=0; i<taskCount; i++){
-            if(tasks[i].getTaskId().equals(this.projectId)){
+    public Task findTaskById(String taskId){
+        for(int i = 0; i<taskCount; i++){
+            if(tasks[i].getTaskId().equals(taskId)){
                 return tasks[i];
             }
         }
         return null;
+    }
+
+    public boolean removeTask(String taskId){
+        int indexToRemove = -1;
+        for(int i = 0; i<taskCount; i++){
+            if(tasks[i].getTaskId().equals(taskId)){
+                indexToRemove = i;
+                break;
+            }
+        }
+        if(indexToRemove == -1){
+            System.out.println("Error: Task "+ taskId + "not found");
+            return false;
+        }
+        for(int i = indexToRemove; i<taskCount-1; i++){
+            tasks[i] = tasks[i+1];
+        }
+        tasks[taskCount - 1] = null;
+        taskCount--;
+        System.out.println("Task " + taskId + " removed successfully");
+        return true;
     }
 
     @Override
