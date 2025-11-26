@@ -39,4 +39,22 @@ public class ProjectService {
         projectCount++;
         return project;
     }
+
+    //GET ALL PROJECTS
+    public Project[] getAllProjects(){
+        return projects;
+    }
+    //get project count
+    public int getProjectCount(){
+        return projectCount;
+    }
+    //get project by id(using linear search through the projects array)
+    public Project findProjectById(String projectId){
+        for(int i = 0; i<projectCount; i++){
+            if(projects[i].getProjectId().equals(projectId)){
+                return projects[i];
+            }
+        }
+        return null;
+    }
 }
