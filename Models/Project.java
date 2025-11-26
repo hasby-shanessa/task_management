@@ -171,8 +171,37 @@ public abstract class Project implements Completable {
         return ((double)completedTasks / taskCount) * 100.0;
     }
 
+    //GETTING COUNT OF THE COMPLETED TASKS
+    public int getCompletedTasksCount(){
+        int count = 0;
+        for(int i = 0; i<taskCount; i++){
+            if(tasks[i].isComplete()){
+                count++;
+            }
+        }
+        return count;
+    }
+
     public abstract void displayProjectDetails();
     public abstract String getProjectSummary();
+
+    public void displayTasks(){
+        System.out.println("\nAssociated Tasks: ");
+        System.out.println("----------------------------------------------------");
+        System.out.printf("%-8s | %-25s | %15s%n" , "ID", "TASK NAME", "STATUS");
+        System.out.println("----------------------------------------------------");
+
+        if(taskCount == 0){
+            System.out.println("No tasks");
+        } else {
+            for(int i = 0; i<taskCount; i++){
+                Task t = tasks[i];
+                System.out.printf("%-8s | %-25s | %15s%n", t.getTaskId(), t.getTaskName(), t.getStatus());
+            }
+        }
+        System.out.println("----------------------------------------------------");
+        System.out.printf("Completion Rate: %.0f%%%n", getCompletionPercentage());
+    }
 
     @Override
     public String toString() {
