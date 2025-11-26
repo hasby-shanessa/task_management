@@ -3,20 +3,35 @@ package Models;
 import Interfaces.Completable;
 
 public class Task implements Completable {
+    private static int nextId = 1;
     private String taskId;
-    private String title;
+    private String taskName;
     private String taskDescription;
     private String status;
     private String assignedTo;
     private String projectId;
 
-    public Task(String taskId, String title, String taskDescription){
-        this.taskId = taskId;
-        this.title = title;
+    public Task(String taskName, String taskDescription, String status){
+        this.taskId = "T" + String.format("%03d", nextId);
+        this.taskName = taskName;
         this.taskDescription = taskDescription;
-        this.status = "Created";
+
+        if(isValidStatus(status)){
+            this.status = status;
+        } else{
+            this.status = "Pending";
+        }
+
         this.assignedTo = "Unassigned";
         this.projectId = null;
+    }
+
+    public Task(String taskName){
+        this(taskName, "", "Pending");
+    }
+
+    private boolean isValidStatus(String status){
+        return status.equals("Created") || status.equals("In Progress") || status.equals("Completed");
     }
 
     // GETTERS AND SETTERS
@@ -25,12 +40,12 @@ public class Task implements Completable {
         return taskId;
     }
 
-    public String getTitle() {
-        return title;
+    public String getTaskName() {
+        return taskName;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setTaskName(String title) {
+        this.taskName = title;
     }
 
     public String getTaskDescription() {
@@ -45,8 +60,14 @@ public class Task implements Completable {
         return status;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public boolean setStatus(String status) {
+        if (isValidStatus(status)){
+            this.status = status;
+            return true;
+        } else {
+            System.out.println("Invalid status");
+            return false;
+        }
     }
 
     public String getAssignedTo() {
@@ -65,17 +86,32 @@ public class Task implements Completable {
         this.projectId = projectId;
     }
 
+
+    @Override
     public boolean isComplete(){
         return status.equals("COMPLETED");
     }
+
+    @Override
     public void markAsComplete(){
-        this.status = status;
+        this.status = "COMPLETED";
     }
+
+    @Override
     public double getCompletionPercentage(){
         return status.equals("COMPLETED")?100.0:0.0;
     }
 
+    public static void resetIdCounter(){
+        nextId =1;
+    }
+
+    public static int getCurrentIdCounter(){
+        return nextId;
+    }
+
+    @Override
     public String toString(){
-        return "Task{" + "ID= " + taskId + + '\'' + ", Title='" + title + '\'' + ", Status='" + status + '\'' + ", Assigned='" + assignedTo + '\'' + '}';
+        return "Task{" + "ID= " + taskId + + '\'' + ", Title='" + taskName + '\'' + ", Status='" + status + '\'' + ", Assigned='" + assignedTo + '\'' + '}';
     }
 }
