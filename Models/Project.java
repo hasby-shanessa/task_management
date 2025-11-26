@@ -99,6 +99,7 @@ public abstract class Project implements Completable {
         return null;
     }
 
+    // REMOVING TASK
     public boolean removeTask(String taskId){
         int indexToRemove = -1;
         for(int i = 0; i<taskCount; i++){
@@ -120,6 +121,20 @@ public abstract class Project implements Completable {
         return true;
     }
 
+    //UPDATING TASK STATUS
+    public boolean updateTaskStatus(String taskId, String newStatus){
+        Task task = findTaskById(taskId);
+        if(task == null){
+            System.out.println("Error: Task " + taskId + " not found");
+            return false;
+        }
+        if(task.setStatus(newStatus)){
+            System.out.println("Task \"" + task.getTaskName() + "\" marked as "+ newStatus);
+            return true;
+        }
+        return false;
+    }
+
     @Override
     public boolean isComplete(){
         if(taskCount==0){
@@ -130,6 +145,7 @@ public abstract class Project implements Completable {
                 return false;
             }
         }
+        //If all tasks are complete
         return true;
     }
 
