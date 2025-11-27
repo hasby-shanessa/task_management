@@ -95,4 +95,24 @@ public class ProjectService {
         }
         return result;
     }
+    //get software project count
+    public int getSoftwareProjectCount(){
+        int count = 0;
+        for(int i = 0; i<projectCount; i++){
+            if(projects[i].getProjectType().equals("Software")){
+                count++;
+            }
+        }
+        return count;
+    }
+    //get hardware project count
+    public int getHardwareProjectCount(){
+        int count = 0;
+        for(int i = 0; i<projectCount; i++){
+            if(projects[i].getProjectType().equals("Hardware")){
+                count++;
+            }
+        }
+        return count;
+    }
 }
