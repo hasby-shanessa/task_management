@@ -67,4 +67,18 @@ public class TaskService {
         }
         return result;
     }
+
+    //update task status
+    public boolean updateTaskStatus(String taskId, String newStatus){
+        Task task = findTaskById(taskId);
+        if(task == null){
+            System.out.println("Error: Task: " + taskId + " not found");
+            return false;
+        }
+        if(task.setStatus(newStatus)){
+            System.out.println("Task " + task.getTaskName() + " marked as " + newStatus);
+            return true;
+        }
+        return false;
+    }
 }
