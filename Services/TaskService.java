@@ -124,4 +124,13 @@ public class TaskService {
 
         return count;
         }
+
+        //get total task count
+    public int getTotalTaskCount(){
+        return projectService.getTotalTaskCount();
+    }
+    //get completed task count
+    public int getCompletedTaskCount(){
+        return projectService.getCompletedTaskCount();
+        }
     }
