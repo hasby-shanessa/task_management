@@ -157,4 +157,14 @@ public class ProjectService {
         }
         return total;
     }
+    //get completed project count
+    public int getCompletedProjectCount(){
+        int count = 0;
+        for(int i=0; i<projectCount; i++){
+            if(projects[i].isComplete()){
+                count++;
+            }
+        }
+        return count;
+    }
 }
