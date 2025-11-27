@@ -81,4 +81,17 @@ public class TaskService {
         }
         return false;
     }
+
+    //assign task to a user
+    public boolean assignTask(String taskId, String username) {
+        Task task = findTaskById(taskId);
+        if (task == null) {
+            System.out.println("Error: Task " + taskId + " not found.");
+            return false;
+        }
+
+        task.setAssignedTo(username);
+        System.out.println("Task " + task.getTaskName() + " assigned to " + username);
+        return true;
+    }
 }
