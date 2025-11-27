@@ -94,4 +94,14 @@ public class TaskService {
         System.out.println("Task " + task.getTaskName() + " assigned to " + username);
         return true;
     }
+
+    //remove task
+    public boolean removeTask(String taskId){
+        Project project = findProjectContainingTask(taskId);
+        if(project == null){
+            System.out.println("Error: Not found");
+            return false;
+        }
+        return project.removeTask(taskId);
+    }
 }
