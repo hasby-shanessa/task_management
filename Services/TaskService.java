@@ -104,4 +104,24 @@ public class TaskService {
         }
         return project.removeTask(taskId);
     }
-}
+
+    //count task by status
+    public int countTasksByStatus(String status) {
+        int count = 0;
+        Project[] projects = projectService.getAllProjects();
+        int projectCount = projectService.getProjectCount();
+
+        for (int i = 0; i < projectCount; i++) {
+            Task[] tasks = projects[i].getTasks();
+            int taskCount = projects[i].getTaskCount();
+
+            for (int j = 0; j < taskCount; j++) {
+                if (tasks[j].getStatus().equals(status)) {
+                    count++;
+                }
+            }
+        }
+
+        return count;
+        }
+    }
