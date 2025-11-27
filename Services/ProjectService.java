@@ -148,4 +148,13 @@ public class ProjectService {
         }
         return total / projectCount;
     }
+
+    //get total task count
+    public int getTotalTaskCount(){
+        int total = 0;
+        for(int i = 0; i<projectCount; i++){
+            total += projects[i].getTaskCount();
+        }
+        return total;
+    }
 }
