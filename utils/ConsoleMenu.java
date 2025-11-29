@@ -41,4 +41,21 @@ public class ConsoleMenu {
     public static int getProjectMenuChoice(){
         return ValidationUtils.readIntInRange("Enter your choice: ",1,5);
     }
+
+    //display project catalog
+    public static void displayProjectCatalogHeader(int totalProjects){
+        System.out.println();
+        System.out.println("****************************************************************");
+        System.out.println("|                        PROJECT CATALOG                       |");
+        System.out.println("****************************************************************");
+        System.out.println();
+        System.out.println("1. View All Projects (" + totalProjects + ")");
+        System.out.println("2. Software Projects Only");
+        System.out.println("3. Hardware Projects Only");
+        System.out.println("4. Back to Project Menu");
+        System.out.println();
+    }
+    public static int getCatalogFilterChoice(){
+        return ValidationUtils.readIntInRange("Enter your choice: ",1,4);
+    }
 }
