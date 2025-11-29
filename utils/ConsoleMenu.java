@@ -166,4 +166,28 @@ public class ConsoleMenu {
         }
         System.out.println();
     }
+    //helpers
+    private static String truncate(String text, int maxLength) {
+        if (text == null) return "";
+        if (text.length() <= maxLength) return text;
+        return text.substring(0, maxLength - 3) + "...";
+    }
+
+    public static void showSuccess(String message) {
+        System.out.println("✓ " + message);
+    }
+    public static void showError(String message) {
+        System.out.println("✗ Error: " + message);
+    }
+    public static void showInfo(String message) {
+        System.out.println("ℹ " + message);
+    }
+
+    //permission denied
+    public static void showPermissionDenied() {
+        System.out.println();
+        System.out.println("✗ Permission Denied: You don't have access to this feature.");
+        System.out.println("  Please contact an administrator.");
+        System.out.println();
+    }
 }
