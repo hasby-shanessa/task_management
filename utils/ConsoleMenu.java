@@ -90,4 +90,24 @@ public class ConsoleMenu {
         System.out.println("****************************************************************");
         System.out.println();
     }
+
+    //display task menu
+    public static void displayTaskMenu(){
+        System.out.println();
+        System.out.println("****************************************************************");
+        System.out.println("|                          TASK MANAGEMENT                     |");
+        System.out.println("****************************************************************");
+        System.out.println();
+        System.out.println("1. View Tasks by Project");
+        System.out.println("2. Add New Task");
+        System.out.println("3. Update Task Status");
+        System.out.println("4. Remove Task");
+        System.out.println("5. Back to Main Menu");
+        System.out.println();
+    }
+
+    public static int getTaskMenuChoice() {
+        return ValidationUtils.readIntInRange("Enter your choice: ", 1, 5);
+    }
+
 }
