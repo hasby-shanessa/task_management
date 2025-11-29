@@ -91,4 +91,11 @@ public class validationUtils {
             }
         }
     }
+    //display status options
+    public static void displayStatusOptions(){
+        System.out.println("Status Options:");
+        System.out.println("1. Pending");
+        System.out.println("2. In Progress");
+        System.out.println("3. Complete");
+    }
 }
