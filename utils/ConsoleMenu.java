@@ -1,6 +1,9 @@
 package utils;
 
+import Models.Project;
 import Models.User;
+
+import static com.sun.tools.javac.jvm.Code.truncate;
 
 public class ConsoleMenu {
     public static void displayMenu(User currentUser){
@@ -57,5 +60,34 @@ public class ConsoleMenu {
     }
     public static int getCatalogFilterChoice(){
         return ValidationUtils.readIntInRange("Enter your choice: ",1,4);
+    }
+
+    //display project table
+    public static void displayProjectTable(Project[] projects, int count){
+        System.out.println();
+        System.out.println("****************************************************************");
+        System.out.printf("%-6s | %-20s | %-10s | %-9s | %s%n", "ID", "PROJECT NAME", "TYPE", "TEAM SIZE", "BUDGET");
+        System.out.println("****************************************************************");
+
+        if(count == 0){
+            System.out.println("No projects found");
+        }else{
+            for (int i = 0; i < count; i++) {
+                Project p = projects[i];
+                System.out.printf("%-6s | %-20s | %-10s | %-9d | %s%n", p.getProjectId(), truncate(p.getProjectName(), 20), p.getProjectType(), p.getTeamSize(), p.getBudget());
+                System.out.println("       | Description: " + truncate(p.getProjectDescription(), 45));
+                System.out.println("****************************************************************");
+
+            }
+        System.out.println();
+        }
+    }
+    //display create project header
+    public static void displayCreatePRojectHeader(){
+        System.out.println();
+        System.out.println("****************************************************************");
+        System.out.println("|                        CREATE NEW PROJECT                     |");
+        System.out.println("****************************************************************");
+        System.out.println();
     }
 }
