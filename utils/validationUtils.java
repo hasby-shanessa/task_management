@@ -192,4 +192,22 @@ public class validationUtils {
             }
         }
     }
+    //wait for enter
+    public static void waitForEnter(){
+        System.out.print("\n Press Enter to continue...");
+        scanner.nextLine();
+    }
+    //custom message
+    public static void pause(String message){
+        System.out.println(message);
+        scanner.nextLine();
+    }
+    //close scanner
+    public static void closeScanner(){
+        scanner.close();
+    }
+    //clear screen
+    public static void clearScreen(){
+        System.out.println("\n".repeat(50));
+    }
 }
