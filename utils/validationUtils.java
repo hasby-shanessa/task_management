@@ -24,4 +24,17 @@ public class validationUtils {
         System.out.println(prompt);
         return scanner.nextLine().trim();
     }
+
+    //read integer
+    public static int readInt(String prompt){
+        while(true){
+            try {
+                System.out.println(prompt);
+                String input = scanner.nextLine().trim();
+                return Integer.parseInt(input);
+            } catch (NumberFormatException e){
+                System.out.println("Error: Please enter a valid number");
+            }
+        }
+    }
 }
