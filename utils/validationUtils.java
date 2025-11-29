@@ -155,7 +155,7 @@ public class validationUtils {
                     System.out.println("Error: Budget cannot be negative.");
                 }
             } catch (NumberFormatException e) {
-                System.out.println("Error: Please enter a valid amount (e.g., 15000 or $15,000).");
+                System.out.println("Error: Please enter a valid amount (e.g., 15000 or $15,000)");
             }
         }
     }
@@ -173,7 +173,22 @@ public class validationUtils {
             } else if (input.equals("2") || input.equalsIgnoreCase("Hardware")) {
                 return "Hardware";
             } else {
-                System.out.println("Error: Please enter 1 for Software or 2 for Hardware.");
+                System.out.println("Error: Please enter 1 for Software or 2 for Hardware");
+            }
+        }
+    }
+    //confirmation
+    public static boolean confirm(String prompt) {
+        while (true) {
+            System.out.print(prompt + " (y/n): ");
+            String input = scanner.nextLine().trim().toLowerCase();
+
+            if (input.startsWith("y")) {
+                return true;
+            } else if (input.startsWith("n")) {
+                return false;
+            } else {
+                System.out.println("Error: Please enter 'y' for yes or 'n' for no");
             }
         }
     }
