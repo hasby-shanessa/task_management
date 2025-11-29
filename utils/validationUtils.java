@@ -98,4 +98,23 @@ public class validationUtils {
         System.out.println("2. In Progress");
         System.out.println("3. Complete");
     }
+
+    //read project id
+    public static String readProjectId(String prompt){
+        while(true){
+            System.out.println(prompt);
+            String input = scanner.nextLine().trim().toUpperCase();
+
+            if(input.matches("P\\D{3}")){
+                return input;
+            }
+            if(input.matches("\\d+")){
+                try{
+                    int num = Integer.parseInt(input);
+                    return "P" + String.format("%03d", num);
+                } catch (NumberFormatException e){}
+            }
+            System.out.println("Error: Invalid input, please enter a valid numeric or prefixed ID(e.g. P001");
+        }
+    }
 }
