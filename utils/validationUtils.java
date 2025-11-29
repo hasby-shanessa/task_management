@@ -55,4 +55,23 @@ public class validationUtils {
             }
         }
     }
+
+    //read positive integer
+    public static int readPositiveInt(String prompt) {
+        while (true) {
+            try {
+                System.out.print(prompt);
+                String input = scanner.nextLine().trim();
+                int value = Integer.parseInt(input);
+
+                if (value > 0) {
+                    return value;
+                } else {
+                    System.out.println("Error: Value must be greater than 0.");
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Error: Please enter a valid number");
+            }
+        }
+    }
 }
