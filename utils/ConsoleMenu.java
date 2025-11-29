@@ -118,4 +118,13 @@ public class ConsoleMenu {
         System.out.println("****************************************************************");
         System.out.println();
     }
+
+    //update status header
+    public static void displayUpdateStatusHeader(){
+        System.out.println();
+        System.out.println("****************************************************************");
+        System.out.println("|                       UPDATE TASK STATUS                     |");
+        System.out.println("****************************************************************");
+        System.out.println();
+    }
 }
