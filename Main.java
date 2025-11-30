@@ -25,7 +25,7 @@ public class Main {
         initialize();  //initialize the system
         showWelcome();  //show welcome and login
         login();
-//        runMainLoop(); //run the main application loop
+        runMainLoop(); //run the main application loop
 //        shutdown(); //exit
 
     }
@@ -90,5 +90,31 @@ public class Main {
         System.out.println();
         System.out.println("Switched to: " + currentUser.getDisplayHeader());
         ValidationUtils.waitForEnter();
+    }
+    //run main loop
+    private static void runMainLoop(){
+        boolean running = true;
+        while(running){
+            ConsoleMenu.displayMenu(currentUser);
+            int choice = ConsoleMenu.getMainMenuChoice();
+
+            switch(choice){
+                case 1:
+                    manageProjects();
+                    break;
+                case 2:
+                    manageTasks();
+                    break;
+                case 3:
+                    viewStatusReports();
+                    break;
+                case 4:
+                    switchUser();
+                    break;
+                case 5:
+                    running = false;
+                    break;
+            }
+        }
     }
 }
