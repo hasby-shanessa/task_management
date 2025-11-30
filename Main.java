@@ -419,7 +419,7 @@ public class Main {
     //view tasks by project
     private static void viewTasksByProject(){
         if (projectService.getProjectCount() == 0) {
-            ConsoleMenu.showInfo("No projects available.");
+            ConsoleMenu.showInfo("No projects available");
             ValidationUtils.waitForEnter();
             return;
         }
@@ -434,11 +434,66 @@ public class Main {
         String projectId = ValidationUtils.readProjectId("\nEnter Project ID: ");
         Project project = projectService.findProjectById(projectId);
         if (project == null) {
-            ConsoleMenu.showError("Project not found.");
+            ConsoleMenu.showError("Project not found");
         } else {
             project.displayTasks();
         }
 
+        ValidationUtils.waitForEnter();
+    }
+    //add new task
+    private static void addNewTask() {
+        if (projectService.getProjectCount() == 0) {
+            ConsoleMenu.showInfo("No projects available. Create a project first");
+            ValidationUtils.waitForEnter();
+            return;
+        }
+
+        ConsoleMenu.displayAddTaskHeader();
+
+        String taskName = ValidationUtils.readNonEmptyString("Enter task name: ");
+        String projectId = ValidationUtils.readProjectId("Enter assigned project ID: ");
+
+        Project project = projectService.findProjectById(projectId);
+        if (project == null) {
+            ConsoleMenu.showError("Project " + projectId + " not found");
+            ValidationUtils.waitForEnter();
+            return;
+        }
+
+        ValidationUtils.displayStatusOptions();
+        String status = ValidationUtils.readTaskStatus("Enter initial status: ");
+
+        taskService.addTaskToProject(projectId, taskName, status);
+        ValidationUtils.waitForEnter();
+    }
+    //update task status
+    private static void updateTaskStatus() {
+        if (projectService.getTotalTaskCount() == 0) {
+            ConsoleMenu.showInfo("No tasks available");
+            ValidationUtils.waitForEnter();
+            return;
+        }
+
+        ConsoleMenu.displayUpdateStatusHeader();
+
+        String taskId = ValidationUtils.readTaskId("Enter Task ID: ");
+        Task task = taskService.findTaskById(taskId);
+
+        if (task == null) {
+            ConsoleMenu.showError("Task " + taskId + " not found");
+            ValidationUtils.waitForEnter();
+            return;
+        }
+
+        System.out.println("Task: " + task.getTaskName());
+        System.out.println("Current Status: " + task.getStatus());
+        System.out.println();
+
+        ValidationUtils.displayStatusOptions();
+        String newStatus = ValidationUtils.readTaskStatus("Enter new status: ");
+
+        taskService.updateTaskStatus(taskId, newStatus);
         ValidationUtils.waitForEnter();
     }
 }
