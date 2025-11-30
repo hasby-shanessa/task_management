@@ -4,6 +4,7 @@ import Models.User;
 import Services.ReportService;
 import Services.TaskService;
 import Services.ProjectService;
+import utils.ValidationUtils;
 
 import java.util.Scanner;
 
@@ -22,9 +23,9 @@ public class Main {
     public static void main(String[] args) {
         initialize();  //initialize the system
         showWelcome();  //show welcome and login
-//        login();
-//        runMainLoop(); //run the main application loop
-//        shutdown(); //exit
+        login();
+        runMainLoop(); //run the main application loop
+        shutdown(); //exit
 
     }
     //initialization
@@ -46,7 +47,7 @@ public class Main {
         users[2] = new RegularUser("Divine.pm", "Divine Bay", "Product");
     }
     //show welcome screen
-    private static void showWelcome(){
+    private static void showWelcome() {
         System.out.println();
         System.out.println("--********************************************************************--");
         System.out.println("||                                                                     ||");
@@ -56,9 +57,27 @@ public class Main {
         System.out.println("||                                                                     ||");
         System.out.println("---*******************************************************************---");
         System.out.println();
-
-        for(int i = 0; i<userCount; i++){
-            System.out.println((i+1) + ". " + users[i].getDisplayHeader());
-        }
     }
+
+        //login
+        private static void login(){
+            System.out.println("--********************************************************************--");
+            System.out.println("|                               USER LOGIN                              |");
+            System.out.println("--********************************************************************--");
+            System.out.println();
+            System.out.println("Select your user account:");
+            System.out.println();
+            for(int i = 0; i<userCount; i++){
+                System.out.println((i+1) + ". " + users[i].getDisplayHeader());
+            }
+            System.out.println();
+            int choice = ValidationUtils.readIntInRange("Enter your choice: ",1, userCount);
+            currentUser = users[choice - 1];
+
+            System.out.println();
+            System.out.println("Welcome, " + currentUser.getFullName() + "!");
+            System.out.println("Role: " + currentUser.getRole());
+            System.out.println();
+            ValidationUtils.waitForEnter();
+        }
 }
