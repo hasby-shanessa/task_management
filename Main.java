@@ -1,4 +1,5 @@
 import Models.AdminUser;
+import Models.Project;
 import Models.RegularUser;
 import Models.User;
 import Services.ReportService;
@@ -141,5 +142,68 @@ public class Main {
                     break;
             }
         }
+    }
+    //view project catalog
+    private static void viewProjectCatalog(){
+        boolean inCatalog = true;
+        while(inCatalog){
+            ConsoleMenu.displayProjectCatalogHeader(projectService.getProjectCount());
+            int filterChoice = ConsoleMenu.getCatalogFilterChoice();
+            Project[] displayProjects;
+            int displayCount;
+
+            switch (filterChoice){
+                case 1:
+                    displayProjects = projectService.getAllProjects();
+                    displayCount = projectService.getProjectCount();
+                    ConsoleMenu.displayProjectTable(displayProjects, displayCount);
+                    break;
+                case 2:
+                    displayProjects = projectService.getSoftwareProjects();
+                    displayCount = projectService.getSoftwareProjectCount();
+                    System.out.println("\n [ Filtered: Software projects only ]");
+                    ConsoleMenu.displayProjectTable(displayProjects, displayCount);
+                    break;
+                case 3:
+                    displayProjects = projectService.getHardwareProjects();
+                    displayCount = projectService.getHardwareProjectCount();
+                    System.out.println("\n [ Filtered: Hardware projects only ]");
+                    ConsoleMenu.displayProjectTable(displayProjects, displayCount);
+                    break;
+                case 4:
+                    inCatalog = false;
+                    continue;
+                default:
+                    displayProjects = new Project[0];
+                    displayCount = 0;
+            }
+            if(filterChoice != 4 && displayCount > 0){
+                String input = ValidationUtils.readString("Enter Project ID to view details (or press Enter to go back): ");
+                if(!input.isEmpty()){
+                    String projectId = normalizeProjectId(input);
+                    Project project = projectService.findProjectById(projectId);
+                    if(project != null){
+                        showProjectDetailsAndOptions(project);
+                    } else {
+                        ConsoleMenu.showError("Project " + projectId + " not found");
+                    }
+                }
+            }
+            if(filterChoice != 4){
+                ValidationUtils.waitForEnter();
+            }
+        }
+    }
+    //convert project id to P001
+    private static String normalizeProjectId(String input){
+        input = input.trim().toUpperCase();
+        if(input.matches("P\\d{3}")){
+            return input;
+        }
+        if(input.matches("\\d+")){
+            int num = Integer.parseInt(input);
+            return "P" + String.format("%03d", num);
+        }
+        return input;
     }
 }
