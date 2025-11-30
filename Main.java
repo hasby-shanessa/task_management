@@ -529,4 +529,18 @@ public class Main {
         reportService.displayStatusReport();
         ValidationUtils.waitForEnter();
     }
+    //shutdown
+    private static void shutdown(){
+        System.out.println();
+        System.out.println("--********************************************************************--");
+        System.out.println("||                                                                     ||");
+        System.out.println("||                  THANK YOU FOR USING THE SYSTEM!                    ||");
+        System.out.println("||                                                                     ||");
+        System.out.println("||                              Goodbye!                               ||");
+        System.out.println("||                                                                     ||");
+        System.out.println("---*******************************************************************---");
+        System.out.println();
+
+        ValidationUtils.closeScanner();
+    }
 }
