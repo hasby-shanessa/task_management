@@ -416,4 +416,29 @@ public class Main {
             }
         }
     }
+    //view tasks by project
+    private static void viewTasksByProject(){
+        if (projectService.getProjectCount() == 0) {
+            ConsoleMenu.showInfo("No projects available.");
+            ValidationUtils.waitForEnter();
+            return;
+        }
+        Project[] projects = projectService.getAllProjects();
+        int count = projectService.getProjectCount();
+        System.out.println("\nAvailable Projects:");
+        System.out.println("**********************************************************");
+        for(int i = 0; i<count; i++){
+            System.out.printf("%s | %s | Tasks: %d%n", projects[i].getProjectId(), projects[i].getProjectName(), projects[i].getTaskCount());
+        }
+        System.out.println("**********************************************************");
+        String projectId = ValidationUtils.readProjectId("\nEnter Project ID: ");
+        Project project = projectService.findProjectById(projectId);
+        if (project == null) {
+            ConsoleMenu.showError("Project not found.");
+        } else {
+            project.displayTasks();
+        }
+
+        ValidationUtils.waitForEnter();
+    }
 }
