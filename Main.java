@@ -524,4 +524,9 @@ public class Main {
 
         ValidationUtils.waitForEnter();
     }
+    //view status reports
+    private static void viewStatusReports(){
+        reportService.displayStatusReport();
+        ValidationUtils.waitForEnter();
+    }
 }
