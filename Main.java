@@ -256,4 +256,44 @@ public class Main {
 
         ValidationUtils.waitForEnter();
     }
+    //view project details
+    public static void viewProjectDetails(){
+        if(projectService.getProjectCount() == 0){
+            ConsoleMenu.showInfo("No projects found");
+            ValidationUtils.waitForEnter();
+            return;
+        }
+        String projectId = ValidationUtils.readProjectId("Enter Project ID: ");
+        Project project = projectService.findProjectById(projectId);
+
+        if (project == null) {
+            ConsoleMenu.showError("Project " + projectId + " not found.");
+            ValidationUtils.waitForEnter();
+            return;
+        }
+
+        showProjectDetailsAndOptions(project);
+    }
+    //show project details with options
+    private static void showProjectDetailsAndOptions(Project project){
+        boolean viewingProject = true;
+        while(viewingProject){
+            project.displayProjectDetails();
+            int choice = ValidationUtils.readIntInRange("Enter your choice: ", 1, 4);
+            switch (choice){
+                case 1:
+                    addTaskToSpecificProject(project);
+                    break;
+                case 2:
+                    updateTaskInProject(project);
+                    break;
+                case 3:
+                    removeTaskFromProject(project);
+                    break;
+                case 4:
+                    viewingProject = false;
+                    break;
+            }
+        }
+    }
 }
