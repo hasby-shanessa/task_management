@@ -117,4 +117,29 @@ public class Main {
             }
         }
     }
+    //manage projects menu
+    private static void manageProjects(){
+        boolean inProjectMenu = true;
+        while(inProjectMenu){
+            ConsoleMenu.displayProjectMenu();
+            int choice = ConsoleMenu.getProjectMenuChoice();
+            switch(choice){
+                case 1:
+                    viewProjectCatalog();
+                    break;
+                case 2:
+                    createProject();
+                    break;
+                case 3:
+                    viewProjectDetails();
+                    break;
+                case 4:
+                    deleteProject();
+                    break;
+                case 5:
+                    inProjectMenu = false;
+                    break;
+            }
+        }
+    }
 }
