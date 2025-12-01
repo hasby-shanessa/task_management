@@ -27,14 +27,4 @@ public class RegularUser extends User{
     public boolean canDeleteProjects(){
         return false;
     }
-    @Override
-    public boolean canManageUsers(){
-        return false;
-    }
-
-    @Override
-    public String getPermissionsSummary() {
-        return "REGULAR USER PERMISSIONS:\n" + "  ✓ Create Projects\n" + "  ✓ View Projects\n" + "  ✓ Manage Tasks\n" + "  ✗ Delete Projects\n" + "  ✗ Manage Users";
-    }
-
 }

@@ -13,14 +13,4 @@ public class AdminUser extends User {
     public boolean canDeleteProjects(){
         return true;
     }
-
-    @Override
-    public boolean canManageUsers() {
-        return false;
-    }
-
-    @Override
-    public String getPermissionsSummary() {
-        return "ADMIN PERMISSIONS:\n" + "  ✓ Create Projects\n" + "  ✓ Delete Projects\n" + "  ✓ Manage Users\n" + "  ✓ Full System Access";
-    }
 }

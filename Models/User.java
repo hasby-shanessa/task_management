@@ -42,10 +42,6 @@ public abstract class User {
     public abstract boolean canCreateProjects();
     //Can user delete
     public abstract boolean canDeleteProjects();
-    //Can manage other users
-    public abstract boolean canManageUsers();
-    //Get user's summary about their permissions
-    public abstract String getPermissionsSummary();
 
     //USER INFO DISPLAY
     public String getDisplayHeader(){
