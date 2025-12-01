@@ -57,24 +57,6 @@ public abstract class Project implements Completable {
         return taskCount;
     }
 
-    public void setProjectName(String projectName) {
-        this.projectName = projectName;
-    }
-
-    public void setProjectDescription(String projectDescription) {
-        this.projectDescription = projectDescription;
-    }
-
-    public void setTeamSize(int teamSize){
-        if(teamSize > 0){
-            this.teamSize = teamSize;
-        }
-    }
-
-    public void setBudget(String budget) {
-        this.budget = budget;
-    }
-
         // ADDING A TASK TO THE PROJECT
     public boolean addTask(Task task){
         if(taskCount >= MAX_TASKS){
