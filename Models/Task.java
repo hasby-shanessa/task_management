@@ -44,18 +44,6 @@ public class Task implements Completable {
         return taskName;
     }
 
-    public void setTaskName(String title) {
-        this.taskName = title;
-    }
-
-    public String getTaskDescription() {
-        return taskDescription;
-    }
-
-    public void setTaskDescription(String taskDescription) {
-        this.taskDescription = taskDescription;
-    }
-
     public String getStatus() {
         return status;
     }
