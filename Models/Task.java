@@ -58,16 +58,8 @@ public class Task implements Completable {
         }
     }
 
-    public String getAssignedTo() {
-        return assignedTo;
-    }
-
     public void setAssignedTo(String assignedTo) {
         this.assignedTo = assignedTo;
-    }
-
-    public String getProjectId() {
-        return projectId;
     }
 
     public void setProjectId(String projectId) {
@@ -92,10 +84,6 @@ public class Task implements Completable {
 
     public static void resetIdCounter(){
         nextId =1;
-    }
-
-    public static int getCurrentIdCounter(){
-        return nextId;
     }
 
     @Override
