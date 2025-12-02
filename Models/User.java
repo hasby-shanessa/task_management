@@ -17,23 +17,11 @@ public abstract class User {
         this.role = role;
     }
 
-    public String getUserId(){
-        return userId;
-    }
-    public String getUsername(){
-        return username;
-    }
     public String getFullName(){
         return fullName;
     }
     public String getRole(){
         return role;
-    }
-    public void setUsername(String username){
-        this.username = username;
-    }
-    public void setFullName(String fullName){
-        this.fullName = fullName;
     }
 
     //PERMISSIONS

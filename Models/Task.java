@@ -31,7 +31,7 @@ public class Task implements Completable {
     }
 
     private boolean isValidStatus(String status){
-        return status.equals("Pending") || status.equals("In Progress") || status.equals("COMPLETED");
+        return status.equals("Pending") || status.equals("In Progress") || status.equals("Completed");
     }
 
     // GETTERS AND SETTERS
@@ -56,10 +56,6 @@ public class Task implements Completable {
             System.out.println("Invalid status");
             return false;
         }
-    }
-
-    public void setAssignedTo(String assignedTo) {
-        this.assignedTo = assignedTo;
     }
 
     public void setProjectId(String projectId) {
@@ -88,6 +84,6 @@ public class Task implements Completable {
 
     @Override
     public String toString(){
-        return "Task{" + "ID= " + taskId + + '\'' + ", Title='" + taskName + '\'' + ", Status='" + status + '\'' + ", Assigned='" + assignedTo + '\'' + '}';
+        return "Task{ID='" + taskId + "', Title='" + taskName + "', Status='" + status + "', Assigned='" + assignedTo + "'}";
     }
 }

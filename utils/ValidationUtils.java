@@ -25,18 +25,6 @@ public class ValidationUtils {
         return scanner.nextLine().trim();
     }
 
-    //read integer
-    public static int readInt(String prompt) {
-        while (true) {
-            try {
-                System.out.print(prompt);
-                String input = scanner.nextLine().trim();
-                return Integer.parseInt(input);
-            } catch (NumberFormatException e) {
-                System.out.println("Error: Please enter a valid number");
-            }
-        }
-    }
 
     //read integer in range(between min and max)
     public static int readIntInRange(String prompt, int min, int max) {
@@ -82,7 +70,7 @@ public class ValidationUtils {
             String input = scanner.nextLine().trim();
             if (input.equalsIgnoreCase("Pending") || input.equals("1")) {
                 return "Pending";
-            } else if (input.equalsIgnoreCase("In Progress") || input.equalsIgnoreCase("InProress") || input.equals("2")) {
+            } else if (input.equalsIgnoreCase("In Progress") || input.equalsIgnoreCase("InProgress") || input.equals("2")) {
                 return "In Progress";
             } else if (input.equalsIgnoreCase("Completed") || input.equalsIgnoreCase("Complete") || input.equalsIgnoreCase("Done") || input.equals("3")) {
                 return "Completed";
@@ -197,17 +185,9 @@ public class ValidationUtils {
         System.out.print("\n Press Enter to continue...");
         scanner.nextLine();
     }
-    //custom message
-    public static void pause(String message){
-        System.out.println(message);
-        scanner.nextLine();
-    }
+
     //close scanner
     public static void closeScanner(){
         scanner.close();
-    }
-    //clear screen
-    public static void clearScreen(){
-        System.out.println("\n".repeat(50));
     }
 }

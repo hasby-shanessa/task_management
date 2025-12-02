@@ -8,16 +8,6 @@ public class ReportService {
     public ReportService(ProjectService projectService){
         this.projectService = projectService;
     }
-    //generate status report
-public StatusReport generateStatusReport(){
-        StatusReport report = new StatusReport();
-        report.setTotalProjects(projectService.getProjectCount());
-        report.setCompletedProjects(projectService.getCompletedProjectCount());
-        report.setTotalTasks(projectService.getTotalTaskCount());
-        report.setCompletedTasks(projectService.getCompletedTaskCount());
-        report.setAverageCompletion(projectService.getAverageCompletion());
-        return report;
-    }
 
     //display full status report
     public void displayStatusReport(){
@@ -49,22 +39,5 @@ public StatusReport generateStatusReport(){
         System.out.printf("AVERAGE COMPLETION: %.1f%%%n", projectService.getAverageCompletion());
         System.out.println("_______________________________________________________________");
         System.out.println();
-    }
-
-    //display summary
-    public void displaySummary(){
-        StatusReport report = generateStatusReport();
-        System.out.println();
-        System.out.println("************************************************************");
-        System.out.println("|                          SYSTEM SUMMARY                  |");
-        System.out.println("************************************************************");
-        System.out.println("Total Projects: " + report.getTotalProjects());
-        System.out.println("Completed Projects: " + report.getCompletedProjects());
-        System.out.println("Total Tasks: " + report.getTotalTasks());
-        System.out.println("Completed Tasks: " + report.getCompletedTasks());
-        System.out.printf("Average Progress: %.1f%%%n", report.getAverageCompletion());
-        System.out.println("************************************************************");
-        System.out.println();
-
     }
 }

@@ -190,9 +190,6 @@ public abstract class Project implements Completable {
     public static void resetIdCounter(){
         nextId = 1;
     }
-    public static int getCurrentIdCounter(){
-        return nextId;
-    }
 
     @Override
     public String toString() {

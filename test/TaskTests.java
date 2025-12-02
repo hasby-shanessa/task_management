@@ -8,25 +8,30 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class TaskTests {
+
     private Task task;
 
     @BeforeEach
-    void setUp(){
+    void setUp() {
         Task.resetIdCounter();
-        task = new Task("Test task", "Description", "Pending");
+        task = new Task("Test Task", "Description", "Pending");
+    }
+
+    //creation tests
+
+    @Test
+    @DisplayName("Task should have correct name")
+    void testTaskName() {
+        assertEquals("Test Task", task.getTaskName());
     }
 
     @Test
-    @DisplayName("Task should have corect name")
-    void testTaskName(){
-        assertEquals("Test task", task.getTaskName());
-    }
-    @Test
-    @DisplayName("Task should have auto-generated ID")
-    void testTaskId(){
+    @DisplayName("Task should have auto-generated ID starting with T")
+    void testTaskId() {
         assertTrue(task.getTaskId().startsWith("T"));
         assertEquals("T001", task.getTaskId());
     }
+
     @Test
     @DisplayName("Second task should have ID T002")
     void testSecondTaskId() {
@@ -34,9 +39,10 @@ public class TaskTests {
         assertEquals("T002", task2.getTaskId());
     }
 
+
     //Status tests
     @Test
-    @DisplayName("Valid status should be accepted")
+    @DisplayName("Valid status 'In Progress' should be accepted")
     void testValidStatus() {
         assertTrue(task.setStatus("In Progress"));
         assertEquals("In Progress", task.getStatus());
@@ -68,16 +74,17 @@ public class TaskTests {
     void testMarkAsComplete() {
         task.markAsComplete();
         assertEquals("Completed", task.getStatus());
+        assertTrue(task.isComplete());
     }
 
     @Test
-    @DisplayName("Completion percentage should be 0 for pending")
+    @DisplayName("Completion percentage should be 0 for Pending")
     void testCompletionZero() {
         assertEquals(0.0, task.getCompletionPercentage());
     }
 
     @Test
-    @DisplayName("Completion percentage should be 100 for completed")
+    @DisplayName("Completion percentage should be 100 for Completed")
     void testCompletionHundred() {
         task.setStatus("Completed");
         assertEquals(100.0, task.getCompletionPercentage());
